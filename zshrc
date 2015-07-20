@@ -95,3 +95,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 DEFAULT_USER="abhiranjan"
+
+#if [[ -r ~/.vim/bundle/powerline/powerline/bindings/zsh/powerline.zsh ]]; then
+    #source ~/.vim/bundle/powerline/powerline/bindings/zsh/powerline.zsh
+#fi
