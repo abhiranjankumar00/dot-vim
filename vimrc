@@ -134,11 +134,13 @@ set scrolloff=100
 set smartindent
 set autowrite		" Automatically save before commands like :next and :make
 
-set smartcase		" Do smart case matching
+set ignorecase		" Do case insensitive matching
 set incsearch		" Incremental search
+set smartcase		" Do smart case matching
 
 set shiftwidth=4
 set expandtab          " Expand tabs as spaces
+set shiftround  " when shifting a non-aligned set of lines, alignt them to the next tabstop
 
 set clipboard=unnamed,unnamedplus " y and d put stuff into system clipboard (so that other apps can see it)
 
