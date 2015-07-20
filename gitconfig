@@ -1,0 +1,15 @@
+[user]
+	email = abhiranjan.kumar00@gmail.com
+	name = Abhiranjan Kumar
+[credential "https://github.com"]
+	username = abhiranjankumar00
+[core]
+	editor = vim
+[merge]
+    tool = vimdiff
+    ;tool = gvimdiff
+    ;tool = meld
+[credential]
+	helper = cache --timeout=600
+[push]
+	default = simple
