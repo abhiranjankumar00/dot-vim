@@ -35,6 +35,9 @@ Plugin 'git@github.com:kien/ctrlp.vim.git'
 " A tree explorer plugin for vim.
 Plugin 'git@github.com:scrooloose/nerdtree.git'
 
+" NERDTree and tabs together in Vim, painlessly
+Plugin 'git@github.com:jistr/vim-nerdtree-tabs.git'
+
 " Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
 Plugin 'git@github.com:Raimondi/delimitMate.git'
 
@@ -58,7 +61,7 @@ Plugin 'git@github.com:scrooloose/syntastic.git'
 Plugin 'git@github.com:flazz/vim-colorschemes.git'
 
 " Tiled Window Management for Vim
-Plugin 'git@github.com:spolu/dwm.vim.git'
+"Plugin 'git@github.com:spolu/dwm.vim.git'
 
 "numbers.vim is a plugin for intelligently toggling line numbers.
 Plugin 'git@github.com:myusuf3/numbers.vim.git'
@@ -73,8 +76,15 @@ Plugin 'git@github.com:Shougo/neocomplete.vim.git'
 " Vim plugin that displays tags in a window
 Plugin 'git@github.com:majutsushi/tagbar.git'
 
+"Automated tag generation and syntax highlighting in Vim
+Plugin 'git@github.com:xolox/vim-misc.git'
+Plugin 'git@github.com:xolox/vim-easytags.git'
+
 " Powerline is a statusline plugin for vim
 Plugin 'https://github.com/powerline/powerline.git'
+
+" A plugin to diff and merge two directories recursively.
+Plugin 'git@github.com:vim-scripts/DirDiff.vim.git'
 
 " Lean & mean status/tabline for vim that's light as air
 "Plugin 'git@github.com:bling/vim-airline.git'
@@ -112,6 +122,16 @@ function! ShowTralingSpace()
 endfunction
 call ShowTralingSpace()
 
+function TrimTrailingSpaces()
+  if !&binary && &filetype != 'diff'
+    normal mz
+    normal Hmy
+    %s/\s\+$//e
+    normal 'yz<CR>
+    normal `z
+  endif
+endfunction
+
 "let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
@@ -126,6 +146,24 @@ let g:syntastic_cpp_compiler = 'clang++'
 "let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
+" Vim5 and later versions support syntax highlighting. Uncommenting the next
+" line enables syntax highlighting by default.
+if has("syntax")
+  syntax on
+endif
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+" Uncomment the following to have Vim load indentation rules and plugins
+" according to the detected filetype.
+if has("autocmd")
+  filetype plugin indent on
+endif
+
 set number		" Set line numbers
 set wildmenu		" show all options on pressing tab
 set autoread  		"automaticall re-read file changed outside vim
@@ -133,6 +171,7 @@ set mouse=a		" Enable mouse usage (all modes)
 set scrolloff=100
 set smartindent
 set autowrite		" Automatically save before commands like :next and :make
+set backspace=2  " set backspace
 
 set ignorecase		" Do case insensitive matching
 set incsearch		" Incremental search
@@ -146,7 +185,10 @@ set clipboard=unnamed,unnamedplus " y and d put stuff into system clipboard (so 
 
 set pastetoggle=<F12> " <F12> toggles paste mode
 
-" LaTeX
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
+
+" LaTeX"{{{
 function! TEXSET()
   set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ pdfcslatex\ -file-line-error-style\ %;fi;fi
   set errorformat=%f:%l:\ %m
@@ -369,7 +411,9 @@ function! PYSET()
   set tw=0
 "  set nowrap
 endfunction
+"}}}
 
+"{{{
 " Asymptote does not get recognized by default, fix it
 augroup filetypedetect
 	autocmd BufNewFile,BufRead *.asy setfiletype asy
@@ -415,5 +459,16 @@ autocmd FileType xquery     call XQUERYSET()
 autocmd FileType coq        call COQSET()
 autocmd FileType sml        call SMLSET()
 autocmd FileType awk        call AWKSET()
+"}}}
+
+let g:neocomplete#enable_at_startup = 1
+let g:easytags_async = 1
+
+"autocmd VimEnter * NERDTree   "Starts NERDTree at vim startup
+"autocmd BufEnter * NERDTreeMirror
+"autocmd VimEnter * wincmd p   " Keep cursor on file window
+
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+let g:nerdtree_tabs_open_on_console_startup = 1
 
 command! Status echo "All systems are go!"

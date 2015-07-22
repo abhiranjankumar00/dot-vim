@@ -1,0 +1,20 @@
+[ui]
+username = Abhiranjan Kumar <abhiranjan@cleartax.in>
+merge = meld
+
+[extensions]
+hgext.extdiff =
+
+[extdiff]
+cmd.vdiff = meld
+cmd.meld =
+cmd.vimdiff = gvim
+opts.vimdiff = -f '+next' '+execute "DirDiff" fnameescape(argv(0)) fnameescape(argv(1))'
+
+[merge-tools]
+meld.args = $local $base $other $output
+#vimdiff.executable = vim
+#vimdiff.args = -d $base $local $output $other +close +close
+
+[alias]
+log = log --limit 5

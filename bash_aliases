@@ -17,6 +17,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias apt-get='apt-fast'
+alias hgdiff='hg extdiff -p vimdiff'
 
 # export PATH=~/.cabal/bin:/opt/cabal/1.18/bin:/opt/ghc/7.8.4/bin:$PATH
-export PATH=~/.cabal/bin:/opt/ghc/7.8.4/bin:$PATH
+export PATH=~/.cabal/bin:/opt/ghc/7.8.4/bin:/opt/idea-IC-141.1532.4/bin:$PATH

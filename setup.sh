@@ -6,5 +6,6 @@ ln -s -i -v ~/.vim/gvimrc  ~/.gvimrc
 ln -s -i -v ~/.vim/bashrc  ~/.bashrc
 ln -s -i -v ~/.vim/zshrc   ~/.zshrc
 ln -s -i -v ~/.vim/bash_aliases  ~/.bash_aliases
-# ln -s -i -v ~/.vim/gitconfig ~/.gitconfig
+ln -s -i -v ~/.vim/gitconfig ~/.gitconfig
+ln -s -i -v ~/.vim/hgrc   ~/.hgrc
 vim +PluginInstall +qall
