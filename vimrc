@@ -54,6 +54,9 @@ Plugin 'git@github.com:ciaranm/detectindent.git'
 " JSON-specific (non-JS) warnings, quote concealing.
 Plugin 'git@github.com:elzr/vim-json.git'
 
+" A filetype plugin for VIM to help edit XML files
+Plugin 'git@github.com:sukima/xmledit.git'
+
 " Syntax checking hacks for vim
 Plugin 'git@github.com:scrooloose/syntastic.git'
 
@@ -187,6 +190,8 @@ set pastetoggle=<F12> " <F12> toggles paste mode
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
+nmap <F10> :TagbarToggle<CR>
+
 
 " LaTeX"{{{
 function! TEXSET()

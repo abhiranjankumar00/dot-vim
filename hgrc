@@ -17,4 +17,4 @@ meld.args = $local $base $other $output
 #vimdiff.args = -d $base $local $output $other +close +close
 
 [alias]
-log = log --limit 5
+latest = log --limit 5
