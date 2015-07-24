@@ -188,11 +188,6 @@ set clipboard=unnamed,unnamedplus " y and d put stuff into system clipboard (so 
 
 set pastetoggle=<F12> " <F12> toggles paste mode
 
-" Allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! w !sudo tee > /dev/null %
-nmap <F10> :TagbarToggle<CR>
-
-
 " LaTeX"{{{
 function! TEXSET()
   set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ pdfcslatex\ -file-line-error-style\ %;fi;fi
@@ -475,5 +470,10 @@ let g:easytags_async = 1
 
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 let g:nerdtree_tabs_open_on_console_startup = 1
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
+"nmap <F10> :TagbarToggle<CR>
+map <Leader>t :TagbarToggle<CR>
 
 command! Status echo "All systems are go!"
