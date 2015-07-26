@@ -215,10 +215,7 @@ endfunction
 " Haskell
 function! HSKSET()
   set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ ghc\ -O2\ -fforce-recomp\ -rtsopts\ -fwarn-name-shadowing\ -fwarn-incomplete-patterns\ -auto-all\ -Wall\ -with-rtsopts=\"-K512m\ -A8m\"\ %;fi;fi
-  set ts=2
-  set shiftwidth=2
-  set expandtab          " Expand tabs as spaces
-  set softtabstop=2
+  set shiftwidth=4
 "  set nowrap
 endfunction
 

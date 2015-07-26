@@ -4,6 +4,8 @@ merge = meld
 
 [extensions]
 hgext.extdiff =
+shelve=
+purge=
 
 [extdiff]
 cmd.vdiff = meld

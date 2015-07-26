@@ -38,4 +38,31 @@ alias hglog='hg log | less'
 # export PATH=~/.cabal/bin:/opt/cabal/1.18/bin:/opt/ghc/7.8.4/bin:$PATH
 export PATH=~/.cabal/bin:/opt/ghc/7.8.4/bin:/opt/idea-IC-141.1532.4/bin:$PATH
 
+# {{{
+function swapFiles()
+{
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE
+    mv "$2" "$1"
+    mv $TMPFILE "$2"
+}
+# }}}
 
+function manSearch() {
+  eval "apropos --exact $1 2> /dev/null 1> /dev/null"
+  ret_val=$?
+
+  if [[ ret_val -eq 16 ]]; then
+      echo "No such command found"
+  else
+      numCommands=`apropos --exact $1 | wc -l`
+      if [[ numCommands -eq 1 ]]; then
+          man $1
+      else
+          #apropos --exact $1
+          man -k "^${1}$"
+          read -p "Select any option (-1 to exit): " opt
+          man $opt $1
+      fi
+  fi
+}
