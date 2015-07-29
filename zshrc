@@ -96,6 +96,7 @@ fi
 
 DEFAULT_USER="abhiranjan"
 
-#if [[ -r ~/.vim/bundle/powerline/powerline/bindings/zsh/powerline.zsh ]]; then
-    #source ~/.vim/bundle/powerline/powerline/bindings/zsh/powerline.zsh
+#if [[ -r /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+    #source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
 #fi
+

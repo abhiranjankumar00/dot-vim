@@ -35,8 +35,7 @@ alias gs='git status'
 alias hgdiff='hg extdiff -p vimdiff'
 alias hglog='hg log | less'
 
-# export PATH=~/.cabal/bin:/opt/cabal/1.18/bin:/opt/ghc/7.8.4/bin:$PATH
-export PATH=~/.cabal/bin:/opt/ghc/7.8.4/bin:/opt/idea-IC-141.1532.4/bin:$PATH
+export PATH=~/.cabal/bin:/opt/ghc/current/bin:/opt/idea-IC-141.1532.4/bin:$PATH
 
 # {{{
 function swapFiles()

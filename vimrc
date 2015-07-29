@@ -71,7 +71,10 @@ Plugin 'git@github.com:myusuf3/numbers.vim.git'
 
 " SnipMate aims to provide support for textual snippets, similar to TextMate
 " or other Vim plugins
-Plugin 'git@github.com:msanders/snipmate.vim.git'
+" Plugin 'git@github.com:msanders/snipmate.vim.git'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
 
 " Next generation completion framework after neocomplcache
 Plugin 'git@github.com:Shougo/neocomplete.vim.git'
@@ -82,9 +85,6 @@ Plugin 'git@github.com:majutsushi/tagbar.git'
 "Automated tag generation and syntax highlighting in Vim
 Plugin 'git@github.com:xolox/vim-misc.git'
 Plugin 'git@github.com:xolox/vim-easytags.git'
-
-" Powerline is a statusline plugin for vim
-Plugin 'https://github.com/powerline/powerline.git'
 
 " A plugin to diff and merge two directories recursively.
 Plugin 'git@github.com:vim-scripts/DirDiff.vim.git'
@@ -108,12 +108,10 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-" Enable powerline
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
-
+" Enable powerline #Method
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 set laststatus=2
+set t_Co=256
 
 " tell the folds to fold on file open
 set foldmethod=marker
@@ -263,7 +261,7 @@ function! JSON()
   set autoindent
   set formatoptions=tcq2l
   set textwidth=78 shiftwidth=2
-  set softtabstop=2 tabstop=8
+  set softtabstop=2 tabstop=4
   set expandtab
   set foldmethod=syntax
 endfunction
@@ -385,7 +383,7 @@ function! MAKEFILESET()
 "  set nowrap
   " in a Makefile we need to use <Tab> to actually produce tabs
   set noet
-  set sts=8
+  set sts=4
 endfunction
 
 " HTML/PHP
@@ -472,5 +470,18 @@ let g:nerdtree_tabs_open_on_console_startup = 1
 cmap w!! w !sudo tee > /dev/null %
 "nmap <F10> :TagbarToggle<CR>
 map <Leader>t :TagbarToggle<CR>
+
+" fugitive statusline usage (http://stackoverflow.com/questions/5983906/vim-conditionally-use-fugitivestatusline-function-in-vimrc)
+set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
+
+" Syntastic settings (https://github.com/scrooloose/syntastic#installation)
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 command! Status echo "All systems are go!"
