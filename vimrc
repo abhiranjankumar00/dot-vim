@@ -15,8 +15,9 @@ Plugin 'gmarik/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
+
 " plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
+" Plugin 'L9'
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
 
@@ -63,28 +64,53 @@ Plugin 'git@github.com:scrooloose/syntastic.git'
 " one colorscheme pack to rule them all!
 Plugin 'git@github.com:flazz/vim-colorschemes.git'
 
-" Tiled Window Management for Vim
-"Plugin 'git@github.com:spolu/dwm.vim.git'
-
 "numbers.vim is a plugin for intelligently toggling line numbers.
 Plugin 'git@github.com:myusuf3/numbers.vim.git'
 
-" SnipMate aims to provide support for textual snippets, similar to TextMate
-" or other Vim plugins
-" Plugin 'git@github.com:msanders/snipmate.vim.git'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+"A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
+Plugin 'git@github.com:Valloric/YouCompleteMe.git'
+" Track the engine.
+
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
+"Happy Haskell programming on Vim, powered by ghc-mod http://www.vim.org/scripts/script.php?script_id=4473
+Plugin 'git@github.com:eagletmt/ghcmod-vim.git'
+
+" vim2hs :: Vim -> Haskell
+Plugin 'git@github.com:dag/vim2hs.git'
+
+"A completion plugin for Haskell, using ghc-mod http://www.vim.org/scripts/script.php?script_id=3423
+Plugin 'git@github.com:eagletmt/neco-ghc.git'
+
+Plugin 'git@github.com:Shougo/vimproc.vim.git'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"
+" " If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " Next generation completion framework after neocomplcache
-Plugin 'git@github.com:Shougo/neocomplete.vim.git'
+" Plugin 'git@github.com:Shougo/neocomplete.vim.git'
+
+" Vim runtime files for F# (fsharp)
+Plugin 'git@github.com:kongo2002/fsharp-vim.git'
+
+" Vim omnicompletion (intellisense) and more for c# http://www.omnisharp.net
+"Plugin 'git@github.com:tpope/vim-dispatch.git'
+"Plugin 'git@github.com:OmniSharp/omnisharp-vim.git'
 
 " Vim plugin that displays tags in a window
 Plugin 'git@github.com:majutsushi/tagbar.git'
 
 "Automated tag generation and syntax highlighting in Vim
-Plugin 'git@github.com:xolox/vim-misc.git'
-Plugin 'git@github.com:xolox/vim-easytags.git'
+" Plugin 'git@github.com:xolox/vim-misc.git'
+"Plugin 'git@github.com:xolox/vim-easytags.git'
 
 " A plugin to diff and merge two directories recursively.
 Plugin 'git@github.com:vim-scripts/DirDiff.vim.git'
@@ -121,7 +147,7 @@ function! ShowTralingSpace()
   highlight ExtraWhitespace ctermbg=red guibg=red
   match ExtraWhitespace /\s\+$/
 endfunction
-call ShowTralingSpace()
+autocmd BufRead *.* call ShowTralingSpace()
 
 function TrimTrailingSpaces()
   if !&binary && &filetype != 'diff'
@@ -136,7 +162,7 @@ endfunction
 "let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll|o|d|7z)$',
+  \ 'file': '\v\.(exe|so|dll|o|d|7z|swp)$',
   \ }
 
 "Adding template for cpp, java and haskell and rest
@@ -144,7 +170,6 @@ autocmd! BufNewFile * silent! 0r $HOME/.vim/skel/skel.%:e
 
 " Enable c++11 for syntastic
 let g:syntastic_cpp_compiler = 'clang++'
-"let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
@@ -165,14 +190,14 @@ if has("autocmd")
   filetype plugin indent on
 endif
 
-set number		" Set line numbers
+set number		    " Set line numbers
 set wildmenu		" show all options on pressing tab
 set autoread  		"automaticall re-read file changed outside vim
 set mouse=a		" Enable mouse usage (all modes)
 set scrolloff=100
 set smartindent
 set autowrite		" Automatically save before commands like :next and :make
-set backspace=2  " set backspace
+set backspace=indent,eol,start  " set backspace
 
 set ignorecase		" Do case insensitive matching
 set incsearch		" Incremental search
@@ -181,10 +206,48 @@ set smartcase		" Do smart case matching
 set shiftwidth=4
 set expandtab          " Expand tabs as spaces
 set shiftround  " when shifting a non-aligned set of lines, alignt them to the next tabstop
+set softtabstop=4
 
 set clipboard=unnamed,unnamedplus " y and d put stuff into system clipboard (so that other apps can see it)
 
+"Solarized settings
+syntax enable
+set background=dark
+colorscheme solarized
+
 set pastetoggle=<F12> " <F12> toggles paste mode
+
+let g:easytags_async = 1
+
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+let g:nerdtree_tabs_open_on_console_startup = 1
+
+" Disbale it for gvimdiff
+let g:nerdtree_tabs_no_startup_for_diff = 0
+let g:nerdtree_tabs_open_on_gui_startup = 0
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
+"nmap <F10> :TagbarToggle<CR>
+map <Leader>t :TagbarToggle<CR>
+
+" fugitive statusline usage (http://stackoverflow.com/questions/5983906/vim-conditionally-use-fugitivestatusline-function-in-vimrc)
+set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
+
+" Syntastic settings (https://github.com/scrooloose/syntastic#installation)
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" ghc-mod settings
+"hi ghcmodType ctermbg=yellow
+"let g:ghcmod_type_highlight = 'ghcmodType'
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_semantic_triggers = {'haskell' : ['.']}
+let g:necoghc_enable_detailed_browse = 1
+let g:haskell_conceal_wide = 1
+let g:hpaste_author = 'Abhiranjan Kumar <abhiranjan.kumar00@gmail.com>'
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 " LaTeX"{{{
 function! TEXSET()
@@ -205,15 +268,18 @@ endfunction
 function! CPPSET()
 "  set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ g++\ -O2\ -g\ -Wall\ -std=c++0x\ -W\ -o%.bin\ %;fi;fi
   set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ g++\ -O2\ -g\ -std=c++0x\ -Wno-unused-result\ -D_GLIBCXX_DEBUG\ -DDEBUG\ -Wall\ -Wshadow\ %;fi;fi
-  set cindent
-  set tw=0
+  "set cindent
+  "set tw=0
 "  set nowrap
 endfunction
 
 " Haskell
 function! HSKSET()
   set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ ghc\ -O2\ -fforce-recomp\ -rtsopts\ -fwarn-name-shadowing\ -fwarn-incomplete-patterns\ -auto-all\ -Wall\ -with-rtsopts=\"-K512m\ -A8m\"\ %;fi;fi
-  set shiftwidth=4
+  set shiftwidth=2
+  set expandtab          " Expand tabs as spaces
+  set shiftround  " when shifting a non-aligned set of lines, alignt them to the next tabstop
+set softtabstop=2
 "  set nowrap
 endfunction
 
@@ -223,7 +289,6 @@ function! COQSET()
   set ts=2
   set shiftwidth=2
   set expandtab          " Expand tabs as spaces
-  set softtabstop=2
 "  set nowrap
 endfunction
 
@@ -233,7 +298,6 @@ function! SMLSET()
   set ts=2
   set shiftwidth=2
   set expandtab          " Expand tabs as spaces
-  set softtabstop=2
 "  set nowrap
 endfunction
 
@@ -243,7 +307,6 @@ function! XQUERYSET()
   set ts=2
   set shiftwidth=2
   set expandtab          " Expand tabs as spaces
-  set softtabstop=2
 "  set nowrap
 endfunction
 
@@ -252,7 +315,6 @@ function! OCAMLSET()
   set ts=2
   set shiftwidth=2
   set expandtab          " Expand tabs as spaces
-  set softtabstop=2
 "  set nowrap
 endfunction
 
@@ -261,7 +323,7 @@ function! JSON()
   set autoindent
   set formatoptions=tcq2l
   set textwidth=78 shiftwidth=2
-  set softtabstop=2 tabstop=4
+  set softtabstop=4
   set expandtab
   set foldmethod=syntax
 endfunction
@@ -272,7 +334,6 @@ function! RUBYSET()
   set ts=4
   set shiftwidth=4
   set expandtab          " Expand tabs as spaces
-  set softtabstop=4
 "  set nowrap
 endfunction
 
@@ -289,7 +350,6 @@ function! CLJSET()
   set ts=4
   set shiftwidth=4
   set expandtab          " Expand tabs as spaces
-  set softtabstop=4
 "  set nowrap
 endfunction
 
@@ -323,13 +383,16 @@ function! FSHARPSET()
   "set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ gmcs\ %;fi;fi
   set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ fsharpc\ -r:/usr/lib/cli/FSharp.Core-4.3/FSharp.Core.dll\ --noframework\ %;fi;fi
   "
-  set cindent
+  "set cindent
+  set shiftwidth=2
+  set expandtab          " Expand tabs as spaces
+  set shiftround  " when shifting a non-aligned set of lines, alignt them to the next tabstop
 endfunction
 
 function! MARKDOWNSET()
-  set shiftwidth=4
+  "set shiftwidth=4
   set expandtab          " Expand tabs as spaces
-  set softtabstop=4
+  "set softtabstop=4
   set wrap
 endfunction
 
@@ -343,7 +406,6 @@ function! PYTHONSET()
   set cindent
   set shiftwidth=4
   set expandtab          " Expand tabs as spaces
-  set softtabstop=4
 endfunction
 
 function! CLISPSCRIPT()
@@ -351,7 +413,6 @@ function! CLISPSCRIPT()
   set cindent
   set shiftwidth=4
   set expandtab          " Expand tabs as spaces
-  set softtabstop=4
 endfunction
 
 function! SCHEMESCRIPT()
@@ -359,7 +420,6 @@ function! SCHEMESCRIPT()
   "set cindent
   set shiftwidth=2
   set expandtab          " Expand tabs as spaces
-  set softtabstop=2
 endfunction
 
 " Pascal
@@ -455,33 +515,5 @@ autocmd FileType coq        call COQSET()
 autocmd FileType sml        call SMLSET()
 autocmd FileType awk        call AWKSET()
 "}}}
-
-let g:neocomplete#enable_at_startup = 1
-let g:easytags_async = 1
-
-"autocmd VimEnter * NERDTree   "Starts NERDTree at vim startup
-"autocmd BufEnter * NERDTreeMirror
-"autocmd VimEnter * wincmd p   " Keep cursor on file window
-
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
-let g:nerdtree_tabs_open_on_console_startup = 1
-
-" Allow saving of files as sudo when I forgot to start vim using sudo.
-cmap w!! w !sudo tee > /dev/null %
-"nmap <F10> :TagbarToggle<CR>
-map <Leader>t :TagbarToggle<CR>
-
-" fugitive statusline usage (http://stackoverflow.com/questions/5983906/vim-conditionally-use-fugitivestatusline-function-in-vimrc)
-set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
-
-" Syntastic settings (https://github.com/scrooloose/syntastic#installation)
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
 command! Status echo "All systems are go!"

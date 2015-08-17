@@ -36,6 +36,8 @@ alias hgdiff='hg extdiff -p vimdiff'
 alias hglog='hg log | less'
 
 export PATH=~/.cabal/bin:/opt/ghc/current/bin:/opt/idea-IC-141.1532.4/bin:$PATH
+export PATH=/opt/ghc-mod/dist/dist-sandbox-dab4bdab/build/ghc-mod/:$PATH
+export PATH=/opt/ghc-mod/dist/dist-sandbox-dab4bdab/build/ghc-modi/:$PATH
 
 # {{{
 function swapFiles()
