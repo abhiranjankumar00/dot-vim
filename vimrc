@@ -102,8 +102,8 @@ let g:UltiSnipsEditSplit="vertical"
 Plugin 'git@github.com:kongo2002/fsharp-vim.git'
 
 " Vim omnicompletion (intellisense) and more for c# http://www.omnisharp.net
-"Plugin 'git@github.com:tpope/vim-dispatch.git'
-"Plugin 'git@github.com:OmniSharp/omnisharp-vim.git'
+Plugin 'git@github.com:tpope/vim-dispatch.git'
+Plugin 'git@github.com:OmniSharp/omnisharp-vim.git'
 
 " Vim plugin that displays tags in a window
 Plugin 'git@github.com:majutsushi/tagbar.git'
@@ -143,11 +143,12 @@ set t_Co=256
 set foldmethod=marker
 
 function! ShowTralingSpace()
-" Highligting trailing whitespaces
-  highlight ExtraWhitespace ctermbg=red guibg=red
-  match ExtraWhitespace /\s\+$/
+    " Highligting trailing whitespaces
+    highlight ExtraWhitespace ctermbg=red guibg=red
+    match ExtraWhitespace /\s\+$/
 endfunction
 autocmd BufRead *.* call ShowTralingSpace()
+autocmd BufWrite *.* call ShowTralingSpace()
 
 function TrimTrailingSpaces()
   if !&binary && &filetype != 'diff'
