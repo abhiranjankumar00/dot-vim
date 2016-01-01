@@ -51,7 +51,7 @@ HIST_STAMPS="dd.mm.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git mercurial)
+plugins=(git vi-mode cabal colored-man-pages colorize cp tmux command-not-found jsontools web-search)
 
 # User configuration
 
@@ -89,6 +89,10 @@ source $ZSH/oh-my-zsh.sh
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+# autocompletion as in bash
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases

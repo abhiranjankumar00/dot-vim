@@ -11,27 +11,8 @@ call vundle#begin() "{{{
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
 Plugin 'git@github.com:kien/ctrlp.vim.git'
-
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
-" Avoid a name conflict with L9
-" Plugin 'user/L9', {'name': 'newL9'}
 
 " A tree explorer plugin for vim.
 Plugin 'git@github.com:scrooloose/nerdtree.git'
@@ -51,72 +32,43 @@ Plugin 'git@github.com:scrooloose/nerdcommenter.git'
 " Vim script for automatically detecting indent settings
 Plugin 'git@github.com:ciaranm/detectindent.git'
 
-" A better JSON for Vim: distinct highlighting of keywords vs values,
-" JSON-specific (non-JS) warnings, quote concealing.
-Plugin 'git@github.com:elzr/vim-json.git'
-
-" A filetype plugin for VIM to help edit XML files
-Plugin 'git@github.com:sukima/xmledit.git'
+" one colorscheme pack to rule them all!
+Plugin 'git@github.com:flazz/vim-colorschemes.git'
 
 " Syntax checking hacks for vim
 Plugin 'git@github.com:scrooloose/syntastic.git'
 
-" one colorscheme pack to rule them all!
-Plugin 'git@github.com:flazz/vim-colorschemes.git'
+" Vim plugin that displays tags in a window, ordered
+" by scope http://majutsushi.github.com/tagbar/
+Plugin 'git://github.com/majutsushi/tagbar'
 
-"numbers.vim is a plugin for intelligently toggling line numbers.
-Plugin 'git@github.com:myusuf3/numbers.vim.git'
-
-"A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
-Plugin 'git@github.com:Valloric/YouCompleteMe.git'
-" Track the engine.
-
-Plugin 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
-
-"Happy Haskell programming on Vim, powered by ghc-mod http://www.vim.org/scripts/script.php?script_id=4473
+" Happy Haskell programming on Vim, powered by ghc-mod
+" http://www.vim.org/scripts/script.php?script_id=4473
 Plugin 'git@github.com:eagletmt/ghcmod-vim.git'
 
-" vim2hs :: Vim -> Haskell
-Plugin 'git@github.com:dag/vim2hs.git'
-
-"A completion plugin for Haskell, using ghc-mod http://www.vim.org/scripts/script.php?script_id=3423
-Plugin 'git@github.com:eagletmt/neco-ghc.git'
-
+" Interactive command execution in Vim.
 Plugin 'git@github.com:Shougo/vimproc.vim.git'
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-"let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-"
-" " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+" Vim script for text filtering and alignment
+" Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
+" Depends on tabular
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
-" Next generation completion framework after neocomplcache
-" Plugin 'git@github.com:Shougo/neocomplete.vim.git'
+" F# bindings for vim
+Plugin 'git@github.com:fsharp/vim-fsharp.git'
 
-" Vim runtime files for F# (fsharp)
-Plugin 'git@github.com:kongo2002/fsharp-vim.git'
+" A code-completion engine for Vim
+Plugin 'git@github.com:Valloric/YouCompleteMe.git'
 
-" Vim omnicompletion (intellisense) and more for c# http://www.omnisharp.net
-Plugin 'git@github.com:tpope/vim-dispatch.git'
-Plugin 'git@github.com:OmniSharp/omnisharp-vim.git'
+" A vim plugin to give you some slime. (Emacs) http://technotales.wordpress.com/2007/10/03/like-slime-for-vim/
+Plugin 'git@github.com:jpalardy/vim-slime.git'
 
-" Vim plugin that displays tags in a window
-Plugin 'git@github.com:majutsushi/tagbar.git'
+" vim bundle for Racket, for use with Pathogen
+Plugin 'git@github.com:wlangstroth/vim-racket.git'
 
-"Automated tag generation and syntax highlighting in Vim
-" Plugin 'git@github.com:xolox/vim-misc.git'
-"Plugin 'git@github.com:xolox/vim-easytags.git'
-
-" A plugin to diff and merge two directories recursively.
-Plugin 'git@github.com:vim-scripts/DirDiff.vim.git'
-
-" Lean & mean status/tabline for vim that's light as air
-"Plugin 'git@github.com:bling/vim-airline.git'
+" rainbow parentheses improved, shorter code, no level limit, smooth and fast, powerful configuration.
+Plugin 'git@github.com:luochen1990/rainbow.git'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required "}}}
@@ -169,10 +121,6 @@ let g:ctrlp_custom_ignore = {
 "Adding template for cpp, java and haskell and rest
 autocmd! BufNewFile * silent! 0r $HOME/.vim/skel/skel.%:e
 
-" Enable c++11 for syntastic
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
-
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
 if has("syntax")
@@ -196,13 +144,14 @@ set wildmenu		" show all options on pressing tab
 set autoread  		"automaticall re-read file changed outside vim
 set mouse=a		" Enable mouse usage (all modes)
 set scrolloff=100
-set smartindent
+"set smartindent
 set autowrite		" Automatically save before commands like :next and :make
 set backspace=indent,eol,start  " set backspace
 
 set ignorecase		" Do case insensitive matching
 set incsearch		" Incremental search
 set smartcase		" Do smart case matching
+set wrap
 
 set shiftwidth=4
 set expandtab          " Expand tabs as spaces
@@ -213,12 +162,11 @@ set clipboard=unnamed,unnamedplus " y and d put stuff into system clipboard (so 
 
 "Solarized settings
 syntax enable
-set background=dark
-colorscheme solarized
 
 set pastetoggle=<F12> " <F12> toggles paste mode
 
-let g:easytags_async = 1
+" Disbale folding in markdown mode
+let g:vim_markdown_folding_disabled=1
 
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 let g:nerdtree_tabs_open_on_console_startup = 1
@@ -229,6 +177,7 @@ let g:nerdtree_tabs_open_on_gui_startup = 0
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
+
 "nmap <F10> :TagbarToggle<CR>
 map <Leader>t :TagbarToggle<CR>
 
@@ -240,15 +189,47 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-" ghc-mod settings
-"hi ghcmodType ctermbg=yellow
-"let g:ghcmod_type_highlight = 'ghcmodType'
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_semantic_triggers = {'haskell' : ['.']}
-let g:necoghc_enable_detailed_browse = 1
-let g:haskell_conceal_wide = 1
-let g:hpaste_author = 'Abhiranjan Kumar <abhiranjan.kumar00@gmail.com>'
-let g:ycm_autoclose_preview_window_after_completion = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Disbale on-the-fly syntax checking for fsharp
+let g:fsharp_only_check_errors_on_write = 1
+
+" Setting tmux as default for slime
+let g:slime_target = "tmux"
+
+" Enable rainbow parenthesis
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+let lightcolors =  ['lightblue', 'lightyellow', 'red', 'darkgreen', 'darkyellow', 'lightred', 'yellow', 'cyan', 'magenta', 'white']
+let darkcolors = ['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
+let g:rainbow_conf = {
+   \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+   \   'ctermfgs': lightcolors,
+   \   'operators': '_,_',
+   \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+   \   'separately': {
+   \       '*': {},
+   \       'tex': {
+   \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+   \       },
+   \       'lisp': {
+   \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+   \       },
+   \       'vim': {
+   \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+   \       },
+   \       'html': {
+   \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+   \       },
+   \       'css': 0,
+   \   }
+   \}
+
+" To toggle between active or passive type checking we can enable the following key bindings:
+map <silent> <Leader>e :Errors<CR>
+map <Leader>s :SyntasticToggleMode<CR>
 
 " LaTeX"{{{
 function! TEXSET()
@@ -277,10 +258,8 @@ endfunction
 " Haskell
 function! HSKSET()
   set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ ghc\ -O2\ -fforce-recomp\ -rtsopts\ -fwarn-name-shadowing\ -fwarn-incomplete-patterns\ -auto-all\ -Wall\ -with-rtsopts=\"-K512m\ -A8m\"\ %;fi;fi
-  set shiftwidth=2
-  set expandtab          " Expand tabs as spaces
-  set shiftround  " when shifting a non-aligned set of lines, alignt them to the next tabstop
-set softtabstop=2
+  set background=dark
+  colorscheme solarized
 "  set nowrap
 endfunction
 
@@ -383,9 +362,10 @@ endfunction
 function! FSHARPSET()
   "set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ gmcs\ %;fi;fi
   set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ fsharpc\ -r:/usr/lib/cli/FSharp.Core-4.3/FSharp.Core.dll\ --noframework\ %;fi;fi
-  "
-  "set cindent
-  set shiftwidth=2
+
+  "set smartindent
+  set cindent 
+  set shiftwidth=4
   set expandtab          " Expand tabs as spaces
   set shiftround  " when shifting a non-aligned set of lines, alignt them to the next tabstop
 endfunction
@@ -469,7 +449,7 @@ function! PYSET()
 endfunction
 "}}}
 
-"{{{
+"FileType settings "{{{
 " Asymptote does not get recognized by default, fix it
 augroup filetypedetect
 	autocmd BufNewFile,BufRead *.asy setfiletype asy
@@ -478,7 +458,12 @@ augroup filetypedetect
 	autocmd BufNewFile,BufRead *.idr setfiletype haskell
 	autocmd BufNewFile,BufRead *.lhs setfiletype haskell
 	autocmd BufNewFile,BufRead *.json setfiletype json
+        autocmd BufNewFile,BufRead *.agda setfiletype agda
+        autocmd BufNewFile,BufRead *.md setfiletype markdown
+        "autocmd BufRead,BufNewFile *.fs set filetype=fs
+        "autocmd BufRead,BufNewFile *.fsx set filetype=fs
 augroup END
+
 
 filetype plugin on
 
@@ -506,6 +491,7 @@ autocmd FileType scheme call SCHEMESCRIPT()
 autocmd FileType haskell    call HSKSET()
 autocmd FileType clojure    call CLJSET()
 autocmd FileType forth      call FSHARPSET()
+autocmd FileType fsharp     call FSHARPSET()
 autocmd FileType scala      call SCALASET()
 autocmd FileType ocaml      call OCAMLSET()
 autocmd FileType markdown   call MARKDOWNSET()

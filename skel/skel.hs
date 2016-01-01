@@ -31,24 +31,5 @@ import System.Process                       -- runCommand
 
 main :: IO ()
 main = do
-  return ()
+    return ()
 
----------------User Defined Functions----------------- {{{
-readInteger = getInteger
-readInt = getInt
-
-getInteger = head. readIntegerArray
-getInt = head. readIntArray
-
-getIntArray = readIntArray
-getIntegerArray = readIntegerArray
-
-readIntArray = readIntArray' BS.readInt
-readIntegerArray = readIntArray' BS.readInteger
-
-readIntArray' :: (Integral a) => (BS.ByteString->Maybe (a, BS.ByteString)) -> BS.ByteString -> [a]
-readIntArray' parseInt str =
-  case parseInt. BS.dropWhile isSpace $ str of
-    Nothing -> []
-    Just (n, str') -> n : readIntArray' parseInt str'
------------------------------------------------------- }}}
