@@ -81,3 +81,41 @@ function TrimTrailingSpaces()
     normal `z
   endif
 endfunction
+
+
+" C
+function! CSET()
+  set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ gcc\ -Wno-unused-result\ -Wreturn-type\ -Wmain\ -Werror=return-type\ -Werror=main\ -pipe\ -O3\ -std=c99\ %;fi;fi
+endfunction
+
+" Cpp
+function! CPPSET()
+  setlocal makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ clang++\ -O2\ -g\ -std=c++14\ -Wno-unused-result\ -D_GLIBCXX_DEBUG\ -DDEBUG\ -Wall\ -Wshadow\ %;fi;fi
+endfunction
+
+" Haskell
+function! HSKSET()
+  setlocal makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ ghc\ -O2\ -fforce-recomp\ -rtsopts\ -fwarn-name-shadowing\ -fwarn-incomplete-patterns\ -auto-all\ -Wall\ -with-rtsopts=\"-K512m\ -A8m\"\ %;fi;fi
+endfunction
+
+" FSharp
+function! FSHARPSET()
+  set makeprg=if\ \[\ -f\ \"Makefile\"\ \];then\ make\ $*;else\ if\ \[\ -f\ \"makefile\"\ \];then\ make\ $*;else\ fsharpc\ -r:/usr/lib/cli/FSharp.Core-4.3/FSharp.Core.dll\ --noframework\ %;fi;fi
+endfunction
+
+" Makefile
+function! MAKEFILESET()
+  set tw=0
+"  set nowrap
+  " in a Makefile we need to use <Tab> to actually produce tabs
+  set noet
+  set sts=4
+endfunction
+
+" Autocommands for all languages:
+autocmd Filetype gitcommit setlocal spell textwidth=72
+autocmd FileType c          call CSET()
+autocmd FileType cpp        call CPPSET()
+autocmd FileType make       call MAKEFILESET()
+autocmd FileType fsharp     call FSHARPSET()
+autocmd FileType haskell    call HSKSET()
