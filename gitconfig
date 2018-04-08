@@ -5,6 +5,8 @@
 	username = abhiranjankumar00
 [core]
 	editor = vim
+[diff]
+    tool = vimdiff
 [merge]
     ;tool = vimdiff
     ;tool = gvimdiff
@@ -14,10 +16,12 @@
 [push]
 	default = simple
 [alias]
-    lg0 = log --graph --abbrev-commit --decorate=short --date=relative --pretty=format:'%C(red)%h%C(reset) - %C(cyan)%aD%C(reset) %C(magenta)(%ad)%C(reset) %C(yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(green)<%an>%C(reset)%n'
-    lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(yellow)%d%C(reset)'
-    lg2 = log --graph --decorate=full --abbrev-commit --date=relative
-    lg = !"git lg0"
-    l0g = !"git lg0"
+    l0g = log --graph --abbrev-commit --decorate=short --date=relative --pretty=format:'%C(red)%h%C(reset) - %C(cyan)%aD%C(reset) %C(magenta)(%ad)%C(reset) %C(yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(green)<%an>%C(reset)%n'
+    recent = for-each-ref --count=10 --sort=-committerdate refs --format='%(refname:short)'
+    ls-assume-unchanged = !git ls-files -v | grep ^h | awk '{print $2}'
 [log]
         ;decorate = short
+[rebase]
+	autostash = true
+[pull]
+	rebase = true
