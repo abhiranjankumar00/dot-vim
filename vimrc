@@ -9,6 +9,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'jiangmiao/auto-pairs'
 Plug 'danro/rename.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -80,6 +82,9 @@ autocmd! BufNewFile * silent! 0r $HOME/.vim/skel/skel.%:e
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 " Open by default
 let g:nerdtree_tabs_open_on_console_startup = 1
+
+"---------------Fuzzy File Finder---------------"
+map <C-P> :Files<CR>
 
 "-----------------------Helper functions--------------------------------"
 
