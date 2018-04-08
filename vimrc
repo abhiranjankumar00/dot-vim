@@ -16,6 +16,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'flazz/vim-colorschemes'
 Plug 'vim-syntastic/syntastic'
 Plug 'valloric/youcompleteme'
+Plug 'scrooloose/nerdcommenter'
 
 " Initialize plugin system
 call plug#end()
