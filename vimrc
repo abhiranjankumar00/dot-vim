@@ -2,6 +2,14 @@
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
 
+" Specify a directory for plugins. Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes while mentioning plugin name.
+" Shorthand notation; fetches https://github.com/junegunn/vim-
+" Initialize plugin system
+call plug#end()
+
 " Uncomment the following to have Vim jump to the last position when reopening a file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
