@@ -13,9 +13,11 @@ set number		" Always show line number
 set wildmenu 		" Better command-line completion
 set showcmd 		" Show partial commands in the last line of the screen
 set ruler		" Show cursor position in status line
+set mouse=a 		" Enable use of the mouse for all modes
+set history=1000	" Remember last 1000 commands
 
-set clipboard=unnamed,unnamedplus,autoselect " y and d put stuff into system clipboard (so that other apps can see it)
-
+set clipboard=unnamedplus,autoselect " y and d put stuff into system clipboard (so that other apps can see it)
+set pastetoggle=<F12> 	" <F12> toggles paste mode
 
 set autoread  		" Automatically re-read file changed outside vim
 set autowrite		" Automatically save before commands like :next and :make
@@ -25,14 +27,20 @@ set scrolloff=100	" Keep cursor at the centre of screen
 " Searching
 set hlsearch 		" Highlight all matching string
 " Map <C-L> (redraw screen) to also turn off search highlighting until the  next search
-nnoremap <C-L> :nohl<CR><C-L> 
+nnoremap <C-L> :nohl<CR><C-L>
 set ignorecase 		" Use case insensitive search
 set smartcase 		" Override the 'ignorecase' option if the search pattern contains upper case characters
 set incsearch		" Search as you type
- 
+
 " Allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
- 
+
+" Indentation settings for using 4 spaces instead of tabs.
+" Do not change 'tabstop' from its default value of 8 with this setup.
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
 " When opening a new line and no filetype-specific indenting is enabled, keep
 " the same indent as the line you're currently on. Useful for READMEs, etc.
 set autoindent
