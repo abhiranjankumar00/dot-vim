@@ -27,6 +27,9 @@ set pastetoggle=<F12> 	" <F12> toggles paste mode
 
 set autoread  		" Automatically re-read file changed outside vim
 set autowrite		" Automatically save before commands like :next and :make
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
+
 
 set scrolloff=100	" Keep cursor at the centre of screen
 
