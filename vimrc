@@ -5,8 +5,9 @@ set nocompatible
 " Specify a directory for plugins. Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
-" Make sure you use single quotes while mentioning plugin name.
-" Shorthand notation; fetches https://github.com/junegunn/vim-
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+
 " Initialize plugin system
 call plug#end()
 
@@ -70,8 +71,16 @@ autocmd FilterWritePre * if &diff | setlocal wrap | endif
 "Adding template for cpp, java and haskell and rest
 autocmd! BufNewFile * silent! 0r $HOME/.vim/skel/skel.%:e
 
+"-----------------------Plugin Specific Config--------------------------------"
+
+"------------------NerdTreeTabs------------------"
+" Use '\'+'n' to toggle nerd tree
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+" Open by default
+let g:nerdtree_tabs_open_on_console_startup = 1
+
 "-----------------------Helper functions--------------------------------"
-"
+
 function! ShowTralingSpace()
     " Highligting trailing whitespaces
     highlight ExtraWhitespace ctermbg=red guibg=red
