@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'jiangmiao/auto-pairs'
 
 " Initialize plugin system
 call plug#end()
