@@ -11,6 +11,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'danro/rename.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'itchyny/lightline.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -38,6 +39,7 @@ set ruler		" Show cursor position in status line
 set wildmenu 		" Better command-line completion
 set showcmd 		" Show partial commands in the last line of the screen
 set history=1000	" Remember last 1000 commands
+set laststatus=2        " 2 - Always show status line
 
 set clipboard=unnamedplus,autoselect " y and d put stuff into system clipboard (so that other apps can see it)
 set pastetoggle=<F12> 	" <F12> toggles paste mode
@@ -85,6 +87,11 @@ let g:nerdtree_tabs_open_on_console_startup = 1
 
 "---------------Fuzzy File Finder---------------"
 map <C-P> :Files<CR>
+
+"---------------Setting to color statusline---------------"
+if !has('gui_running')
+  set t_Co=256
+endif
 
 "-----------------------Helper functions--------------------------------"
 
