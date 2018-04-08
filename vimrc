@@ -2,6 +2,11 @@
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
 
+" Uncomment the following to have Vim jump to the last position when reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific.
@@ -10,6 +15,7 @@ filetype indent plugin on
 syntax on 		"Enable syntax highlighting
 
 set number		" Always show line number
+set wrap                " Always wrap
 set wildmenu 		" Better command-line completion
 set showcmd 		" Show partial commands in the last line of the screen
 set ruler		" Show cursor position in status line
@@ -44,6 +50,10 @@ set expandtab
 " When opening a new line and no filetype-specific indenting is enabled, keep
 " the same indent as the line you're currently on. Useful for READMEs, etc.
 set autoindent
+
+" Use default wrap option in diffmode `wrap<` uses default wrap setting
+" autocmd FilterWritePre * if &diff | setlocal wrap< | endif
+autocmd FilterWritePre * if &diff | setlocal wrap | endif
 
 function! ShowTralingSpace()
     " Highligting trailing whitespaces
