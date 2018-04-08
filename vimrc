@@ -12,6 +12,7 @@ Plug 'danro/rename.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'easymotion/vim-easymotion'
 
 " Initialize plugin system
 call plug#end()
