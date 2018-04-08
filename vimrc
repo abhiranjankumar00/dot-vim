@@ -15,6 +15,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'flazz/vim-colorschemes'
 Plug 'vim-syntastic/syntastic'
+Plug 'valloric/youcompleteme'
 
 " Initialize plugin system
 call plug#end()
@@ -112,6 +113,9 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++14 -Wno-unused-result -Wall -Wshadow'
+
+"-----------------You Complete Me (YCM)-----------------"
+let g:ycm_global_ycm_extra_conf = '/home/ranjan/.vim/ycm_extra_conf.py'
 
 "-----------------------Helper functions--------------------------------"
 
