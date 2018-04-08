@@ -16,10 +16,12 @@ syntax on 		"Enable syntax highlighting
 
 set number		" Always show line number
 set wrap                " Always wrap
+set mouse=a 		" Enable use of the mouse for all modes
+set scrolloff=100	" Keep cursor at the centre of screen
+set ruler		" Show cursor position in status line
+
 set wildmenu 		" Better command-line completion
 set showcmd 		" Show partial commands in the last line of the screen
-set ruler		" Show cursor position in status line
-set mouse=a 		" Enable use of the mouse for all modes
 set history=1000	" Remember last 1000 commands
 
 set clipboard=unnamedplus,autoselect " y and d put stuff into system clipboard (so that other apps can see it)
@@ -31,7 +33,6 @@ set autowrite		" Automatically save before commands like :next and :make
 cmap w!! w !sudo tee > /dev/null %
 
 
-set scrolloff=100	" Keep cursor at the centre of screen
 
 " Searching
 set hlsearch 		" Highlight all matching string
@@ -57,6 +58,9 @@ set autoindent
 " Use default wrap option in diffmode `wrap<` uses default wrap setting
 " autocmd FilterWritePre * if &diff | setlocal wrap< | endif
 autocmd FilterWritePre * if &diff | setlocal wrap | endif
+
+"Adding template for cpp, java and haskell and rest
+autocmd! BufNewFile * silent! 0r $HOME/.vim/skel/skel.%:e
 
 function! ShowTralingSpace()
     " Highligting trailing whitespaces
