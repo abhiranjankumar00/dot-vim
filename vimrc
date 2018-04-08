@@ -13,6 +13,7 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'flazz/vim-colorschemes'
 
 " Initialize plugin system
 call plug#end()
