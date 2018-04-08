@@ -64,9 +64,9 @@ set backspace=indent,eol,start
 
 " Indentation settings for using 4 spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
-set shiftwidth=4
-set softtabstop=4
-set expandtab
+set shiftwidth=4    " Number of spaces to use for each step of (auto)indent
+set softtabstop=4   " Number of spaces that a Tab counts for while performing editing operations
+set expandtab       " Use the appropriate number of spaces to insert a <Tab>
 
 " When opening a new line and no filetype-specific indenting is enabled, keep
 " the same indent as the line you're currently on. Useful for READMEs, etc.
@@ -94,6 +94,10 @@ map <C-P> :Files<CR>
 if !has('gui_running')
   set t_Co=256
 endif
+
+"-----------------Fixing color in vimdiff-----------------"
+set background=dark
+colorscheme solarized
 
 "-----------------------Helper functions--------------------------------"
 
