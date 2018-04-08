@@ -14,6 +14,8 @@ filetype indent plugin on
 
 syntax on 		"Enable syntax highlighting
 
+"-----------------------Normal settings--------------------------------"
+
 set number		" Always show line number
 set wrap                " Always wrap
 set mouse=a 		" Enable use of the mouse for all modes
@@ -31,8 +33,6 @@ set autoread  		" Automatically re-read file changed outside vim
 set autowrite		" Automatically save before commands like :next and :make
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
-
-
 
 " Searching
 set hlsearch 		" Highlight all matching string
@@ -62,11 +62,15 @@ autocmd FilterWritePre * if &diff | setlocal wrap | endif
 "Adding template for cpp, java and haskell and rest
 autocmd! BufNewFile * silent! 0r $HOME/.vim/skel/skel.%:e
 
+"-----------------------Helper functions--------------------------------"
+"
 function! ShowTralingSpace()
     " Highligting trailing whitespaces
     highlight ExtraWhitespace ctermbg=red guibg=red
     match ExtraWhitespace /\s\+$/
 endfunction
+
+call ShowTralingSpace()
 
 " call `ShowTrailingSpace` in each read/write
 autocmd BufRead *.* call ShowTralingSpace()
@@ -82,6 +86,7 @@ function TrimTrailingSpaces()
   endif
 endfunction
 
+"-----------------------File specific methods--------------------------------"
 
 " C
 function! CSET()
@@ -119,3 +124,4 @@ autocmd FileType cpp        call CPPSET()
 autocmd FileType make       call MAKEFILESET()
 autocmd FileType fsharp     call FSHARPSET()
 autocmd FileType haskell    call HSKSET()
+
