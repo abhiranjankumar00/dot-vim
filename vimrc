@@ -125,6 +125,16 @@ let g:ycm_autoclose_preview_window_after_insertion = 1  "Auto close preview scra
 "-----------------Rainbow Parentheses-----------------"
 au VimEnter * RainbowParentheses    " Start Rainbow parentheses at vim start
 
+"-----------------UtilSnips-----------------"
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
 "-----------------------Helper functions--------------------------------"
 
 function! ShowTralingSpace()
