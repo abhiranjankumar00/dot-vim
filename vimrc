@@ -118,6 +118,8 @@ let g:syntastic_cpp_compiler_options = ' -std=c++14 -Wno-unused-result -Wall -Ws
 
 "-----------------You Complete Me (YCM)-----------------"
 let g:ycm_global_ycm_extra_conf = '/home/ranjan/.vim/ycm_extra_conf.py'
+let g:ycm_autoclose_preview_window_after_insertion = 1  "Auto close preview scratchpad after insertion
+let g:ycm_autoclose_preview_window_after_completion = 1 "Auto close preview scratchpad after completion
 
 "-----------------Rainbow Parentheses-----------------"
 au VimEnter * RainbowParentheses    " Start Rainbow parentheses at vim start
