@@ -94,3 +94,5 @@ fi
 if [ -f /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh ]; then
     source /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
